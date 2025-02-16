@@ -27,6 +27,10 @@ import AppKit
 
 extension NSPasteboard {
     var url: URL? {
-        nil
+        if let url = string(forType: .string) {
+            return URL(string: url)
+        }
+        
+        return nil
     }
 }
