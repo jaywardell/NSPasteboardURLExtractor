@@ -17,7 +17,6 @@ struct NSPasteBoard_URL {
     
     @Test("Ensure that SUT works as expected") func isNilIfPasteboardIsEmpty() async throws {
         let sut = makeSUT()
-        sut.clearContents()
         let expected = "hello"
         
         sut.setString(expected, forType: .string)
@@ -32,6 +31,9 @@ struct NSPasteBoard_URL {
     // MARK: - Helpers
 
     private func makeSUT() -> NSPasteboard {
-        NSPasteboard(name: .init(#function))
+        let out = NSPasteboard(name: .init(#function))
+        out.clearContents()
+        
+        return out
     }
 }
