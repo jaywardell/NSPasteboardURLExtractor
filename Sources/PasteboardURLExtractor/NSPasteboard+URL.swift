@@ -27,13 +27,19 @@ import AppKit
 
 extension NSPasteboard {
     var url: URL? {
+        let out: URL? =
         if let url = string(forType: .string) {
-            return URL(string: url)
+            URL(string: url)
         }
-        if let url = string(forType: .URL) {
-            return URL(string: url)
+        else if let url = string(forType: .URL) {
+            URL(string: url)
+        }
+        else {
+            nil
         }
 
-        return nil
+        guard nil != out?.scheme else { return nil }
+        
+        return out
     }
 }

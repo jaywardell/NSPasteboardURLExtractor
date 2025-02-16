@@ -66,6 +66,24 @@ struct NSPasteBoard_URL {
         #expect(expected == sut.url)
     }
 
+    @Test("if URL is not a valid URL, returns nil")
+    func returns_nil_for_string_that_is_URL_without_scheme() {
+        let sut = makeSUT()
+        
+        sut.setString("hello", forType: .string)
+        
+        #expect(nil == sut.url)
+    }
+        
+    @Test("if URL is not a valid URL, returns nil")
+    func returns_nil_for_string_that_is_URL_without_scheme_as_URL() {
+        let sut = makeSUT()
+
+        sut.setString("hello", forType: .URL)
+
+        #expect(nil == sut.url)
+    }
+
     // MARK: - Administrative
     
     @Test("Ensure that SUT works as expected") func isNilIfPasteboardIsEmpty() async throws {
