@@ -84,6 +84,25 @@ struct NSPasteBoard_URL {
         #expect(nil == sut.url)
     }
 
+    @Test("does not care if something is set as type .fileURL", arguments: [
+        "/",
+        "~",
+        "/Users",
+        "/bin",
+        "/etc",
+        "/Users/me/Documents/readme.txt",
+        "hello",
+        "file:///",
+        "http://hello"
+    ])
+    func returns_nil_for_fileURL(_ string: String) {
+        let sut = makeSUT()
+
+        sut.setString(string, forType: .fileURL)
+
+        #expect(nil == sut.url)
+    }
+
     // MARK: - Administrative
     
     @Test("Ensure that SUT works as expected") func isNilIfPasteboardIsEmpty() async throws {
