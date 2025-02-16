@@ -11,17 +11,17 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "PasteboardURLExtractor",
-            targets: ["PasteboardURLExtractor"]),
+            name: "NSPasteboardURLExtractor",
+            targets: ["NSPasteboardURLExtractor"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "PasteboardURLExtractor"),
+            name: "NSPasteboardURLExtractor"),
         .testTarget(
             name: "PasteboardURLExtractorTests",
-            dependencies: ["PasteboardURLExtractor"]
+            dependencies: ["NSPasteboardURLExtractor"]
         ),
     ]
 )
