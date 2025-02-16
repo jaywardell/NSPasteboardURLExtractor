@@ -12,7 +12,17 @@ struct NSPasteBoard_URL {
         
         #expect(nil == sut.url)
     }
-    
+
+    @Test("If there's an URL in the pasteboard as type .URL, then return that")
+    func url_in_pasteboard_for_type_URL_as_string() async throws {
+        let sut = makeSUT()
+        
+        let expected = URL(string:"http://hi")!
+        sut.setString(expected.absoluteString, forType: .URL)
+        
+        #expect(expected == sut.url)
+    }
+
     @Test("If there's an URL in the pasteboard as type .string, then return that")
     func url_in_pasteboard_for_type_STRING_as_string() async throws {
         let sut = makeSUT()

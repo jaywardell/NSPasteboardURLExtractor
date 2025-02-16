@@ -30,7 +30,10 @@ extension NSPasteboard {
         if let url = string(forType: .string) {
             return URL(string: url)
         }
-        
+        if let url = string(forType: .URL) {
+            return URL(string: url)
+        }
+
         return nil
     }
 }
