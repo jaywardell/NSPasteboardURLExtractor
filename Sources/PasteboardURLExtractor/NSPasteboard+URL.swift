@@ -26,7 +26,7 @@ import AppKit
  */
 
 extension NSPasteboard {
-    var url: URL? {
+   public  var url: URL? {
         let out: URL? =
         if let url = string(forType: .string) {
             URL(string: url)
