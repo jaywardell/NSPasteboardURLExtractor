@@ -27,6 +27,6 @@ import AppKit
 
 extension NSPasteboard {
     var url: URL? {
-        fatalError()
+        nil
     }
 }

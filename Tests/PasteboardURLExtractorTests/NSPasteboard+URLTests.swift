@@ -6,6 +6,12 @@ import AppKit
 @Suite("NSPasteboard+URL.url")
 struct NSPasteBoard_URL {
     
+    @Test("nil if no value in pasteboard")
+    func nil_if_empty() {
+        let sut = makeSUT()
+        
+        #expect(nil == sut.url)
+    }
     
     // MARK: - Administrative
     
