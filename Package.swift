@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "PasteboardURLExtractor",
+    name: "NSPasteboardURLExtractor",
     platforms: [
         .macOS(.v13)
     ],
