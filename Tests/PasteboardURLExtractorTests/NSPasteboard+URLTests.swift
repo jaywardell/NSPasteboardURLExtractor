@@ -27,7 +27,7 @@ struct NSPasteBoard_URL {
     func url_in_pasteboard_for_type_STRING_as_string() async throws {
         let sut = makeSUT()
         
-        let expected = URL(string:"http://hi")!
+        let expected = URL(string:"http://www.hello.com")!
         sut.setString(expected.absoluteString, forType: .string)
         
         #expect(expected == sut.url)
@@ -84,7 +84,7 @@ struct NSPasteBoard_URL {
         #expect(nil == sut.url)
     }
 
-    @Test("does not care if something is set as type .fileURL", arguments: [
+    @Test("ignores anything in pasteboard set as type .fileURL", arguments: [
         "/",
         "~",
         "/Users",
@@ -99,6 +99,20 @@ struct NSPasteBoard_URL {
         let sut = makeSUT()
 
         sut.setString(string, forType: .fileURL)
+
+        #expect(nil == sut.url)
+    }
+
+    @Test("ignores any string in pasteboard that has a URL in its contents but is not completely a URL",
+          arguments: [
+            " http://hello",
+            "My favorite website is http://hello.com",
+            "My favorite website is http://hello.com because it's awesome",
+            "http://www.hello.com is my favoriate website"          ])
+    func returns_nil_for_URL_in_string(_ string: String) {
+        let sut = makeSUT()
+
+        sut.setString(string, forType: .string)
 
         #expect(nil == sut.url)
     }
